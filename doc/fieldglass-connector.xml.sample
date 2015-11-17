@@ -1,0 +1,24 @@
+<!-- BEGIN_INCLUDE(fieldglass:upload) -->
+	<fieldglass:upload config-ref="Fieldglass">
+		<fieldglass:upload ref="#[flowVars.UploadRef]"/>
+	</fieldglass:upload>
+<!-- END_INCLUDE(fieldglass:upload) -->
+
+<!-- BEGIN_INCLUDE(fieldglass:download) -->
+	<fieldglass:download config-ref="Fieldglass">
+		<fieldglass:download ref="#[flowVars.DownloadRef]"/>
+	</fieldglass:download>
+<!-- END_INCLUDE(fieldglass:download) -->
+
+<!-- BEGIN_INCLUDE(fieldglass:echo) -->
+	<fieldglass:echo config-ref="Fieldglass">
+		<fieldglass:echo ref="#[flowVars.EchoRef]"/>
+	</fieldglass:echo>
+<!-- END_INCLUDE(fieldglass:echo) -->
+
+<!-- BEGIN_INCLUDE(fieldglass:upload-x-m-l) -->
+	<fieldglass:upload-x-m-l config-ref="Fieldglass">
+		<fieldglass:upload-x-m-l ref="#[flowVars.UploadXMLRef]"/>
+	</fieldglass:upload-x-m-l>
+<!-- END_INCLUDE(fieldglass:upload-x-m-l) -->
+

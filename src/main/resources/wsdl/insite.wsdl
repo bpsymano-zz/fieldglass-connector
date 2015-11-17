@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="urn:connector.webservice.fieldglass.com"
+	xmlns:axis2="urn:connector.webservice.fieldglass.com" xmlns:ns1="http://org.apache.axis2/xsd"
+	xmlns:ns="http://webservice2.partner.insite" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl"
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/"
+	xmlns:ax21="http://webservice2.partner.insite/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/"
+	xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/">
+	<wsdl:types>
+		<xs:schema attributeFormDefault="qualified"
+			elementFormDefault="qualified" targetNamespace="http://webservice2.partner.insite"
+			xmlns:ax23="http://webservice2.partner.insite/xsd">
+
+			<xs:element name="InsiteFault">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="explanation" nillable="true"
+							type="xs:string" />
+						<xs:element minOccurs="0" name="returnCode" type="xs:int" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+
+			<xs:element name="uploadXML">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="username" nillable="true"
+							type="xs:string" />
+						<xs:element minOccurs="0" name="password" nillable="true"
+							type="xs:string" />
+						<xs:element minOccurs="0" name="uploadID" nillable="true"
+							type="xs:string" />
+						<xs:element minOccurs="0" name="data" nillable="true"
+							type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="uploadXMLResult" nillable="true" type="xs:string" />
+			<xs:element name="upload">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="username" nillable="true"
+							type="xs:string" />
+						<xs:element minOccurs="0" name="password" nillable="true"
+							type="xs:string" />
+						<xs:element minOccurs="0" name="data" nillable="true"
+							type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="uploadResult" nillable="true" type="xs:string" />
+			<xs:element name="echo">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="username" nillable="true"
+							type="xs:string" />
+						<xs:element minOccurs="0" name="password" nillable="true"
+							type="xs:string" />
+						<xs:element minOccurs="0" name="data" nillable="true"
+							type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="echoResult" nillable="true" type="xs:string" />
+			<xs:element name="download">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="username" nillable="true"
+							type="xs:string" />
+						<xs:element minOccurs="0" name="password" nillable="true"
+							type="xs:string" />
+						<xs:element minOccurs="0" name="connector" nillable="true"
+							type="xs:string" />
+						<xs:element minOccurs="0" name="argument" nillable="true"
+							type="xs:string" />
+						<xs:element minOccurs="0" name="postprocessor"
+							nillable="true" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="downloadResult" nillable="true" type="xs:string" />
+		</xs:schema>
+	</wsdl:types>
+	<wsdl:message name="downloadRequestMessage">
+		<wsdl:part name="download" element="ns:download">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="echoRequestMessage">
+		<wsdl:part name="echo" element="ns:echo">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="uploadXMLRequestMessage">
+		<wsdl:part name="uploadXML" element="ns:uploadXML">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="uploadRequestMessage">
+		<wsdl:part name="upload" element="ns:upload">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="echoResponseMessage">
+		<wsdl:part name="echoResult" element="ns:echoResult">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="uploadXMLResponseMessage">
+		<wsdl:part name="uploadXMLResult" element="ns:uploadXMLResult">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="uploadResponseMessage">
+		<wsdl:part name="uploadResult" element="ns:uploadResult">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="downloadResponseMessage">
+		<wsdl:part name="downloadResult" element="ns:downloadResult">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="InsiteFaultMessage">
+		<wsdl:part name="fault" element="ns:InsiteFault">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:portType name="ConnectorPortType">
+		<wsdl:operation name="uploadXML">
+			<wsdl:input message="axis2:uploadXMLRequestMessage"
+				wsaw:Action="urn:uploadXML">
+			</wsdl:input>
+			<wsdl:output message="axis2:uploadXMLResponseMessage"
+				wsaw:Action="urn:uploadXMLResponse">
+			</wsdl:output>
+			<wsdl:fault name="InsiteException" message="axis2:InsiteFaultMessage"
+				wsaw:Action="urn:uploadXMLInsiteException">
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="upload">
+			<wsdl:input message="axis2:uploadRequestMessage"
+				wsaw:Action="urn:upload">
+			</wsdl:input>
+			<wsdl:output message="axis2:uploadResponseMessage"
+				wsaw:Action="urn:uploadResponse">
+			</wsdl:output>
+			<wsdl:fault name="InsiteException" message="axis2:InsiteFaultMessage"
+				wsaw:Action="urn:uploadInsiteException">
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="download">
+			<wsdl:input message="axis2:downloadRequestMessage"
+				wsaw:Action="urn:download">
+			</wsdl:input>
+			<wsdl:output message="axis2:downloadResponseMessage"
+				wsaw:Action="urn:downloadResponse">
+			</wsdl:output>
+			<wsdl:fault name="InsiteException" message="axis2:InsiteFaultMessage"
+				wsaw:Action="urn:downloadInsiteException">
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="echo">
+			<wsdl:input message="axis2:echoRequestMessage"
+				wsaw:Action="urn:echo">
+			</wsdl:input>
+			<wsdl:output message="axis2:echoResponseMessage"
+				wsaw:Action="urn:echoResponse">
+			</wsdl:output>
+			<wsdl:fault name="InsiteException" message="axis2:InsiteFaultMessage"
+				wsaw:Action="urn:echoInsiteException">
+			</wsdl:fault>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="ConnectorSoap12Binding" type="axis2:ConnectorPortType">
+		<soap12:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="uploadXML">
+			<soap12:operation soapAction="urn:uploadXML" style="document" />
+			<wsdl:input>
+				<soap12:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap12:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="InsiteException">
+				<soap12:fault name="InsiteException" use="literal" />
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="upload">
+			<soap12:operation soapAction="urn:upload" style="document" />
+			<wsdl:input>
+				<soap12:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap12:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="InsiteException">
+				<soap12:fault name="InsiteException" use="literal" />
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="download">
+			<soap12:operation soapAction="urn:download" style="document" />
+			<wsdl:input>
+				<soap12:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap12:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="InsiteException">
+				<soap12:fault name="InsiteException" use="literal" />
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="echo">
+			<soap12:operation soapAction="urn:echo" style="document" />
+			<wsdl:input>
+				<soap12:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap12:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="InsiteException">
+				<soap12:fault name="InsiteException" use="literal" />
+			</wsdl:fault>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:binding name="ConnectorSoap11Binding" type="axis2:ConnectorPortType">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="uploadXML">
+			<soap:operation soapAction="urn:uploadXML" style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="InsiteException">
+				<soap:fault name="InsiteException" use="literal" />
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="upload">
+			<soap:operation soapAction="urn:upload" style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="InsiteException">
+				<soap:fault name="InsiteException" use="literal" />
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="download">
+			<soap:operation soapAction="urn:download" style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="InsiteException">
+				<soap:fault name="InsiteException" use="literal" />
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="echo">
+			<soap:operation soapAction="urn:echo" style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="InsiteException">
+				<soap:fault name="InsiteException" use="literal" />
+			</wsdl:fault>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="Connector">
+		<wsdl:port name="ConnectorHttpSoap12Endpoint" binding="axis2:ConnectorSoap12Binding">
+			<soap12:address location="https://ws.fieldglass.net/ws2/services/Connector" />
+		</wsdl:port>
+		<wsdl:port name="ConnectorHttpSoap11Endpoint" binding="axis2:ConnectorSoap11Binding">
+			<soap:address location="https://ws.fieldglass.net/ws2/services/Connector" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>
